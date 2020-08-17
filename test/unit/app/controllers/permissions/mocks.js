@@ -20,7 +20,7 @@ import {
  * - Immutable mock values like Ethereum accounts and expected states
  */
 
-export const noop = () => {}
+export const noop = () => undefined
 
 /**
  * Mock Permissions Controller and Middleware
@@ -108,6 +108,7 @@ export function getPermissionsMiddleware (permController, origin, extensionId) {
   return (req, res = {}, next = noop, end) => {
     return new Promise((resolve, reject) => {
 
+      // eslint-disable-next-line no-param-reassign
       end = end || _end
 
       middleware(req, res, next, end)

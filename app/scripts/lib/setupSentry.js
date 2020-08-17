@@ -72,7 +72,7 @@ export default function setupSentry ({ release, getState }) {
   let sentryTarget
 
   if (METAMASK_DEBUG) {
-    return
+    return undefined
   } else if (METAMASK_ENVIRONMENT === 'production') {
     if (!process.env.SENTRY_DSN) {
       throw new Error(`Missing SENTRY_DSN environment variable in production environment`)
@@ -122,13 +122,13 @@ export default function setupSentry ({ release, getState }) {
 function simplifyErrorMessages (report) {
   rewriteErrorMessages(report, (errorMessage) => {
     // simplify ethjs error messages
-    errorMessage = extractEthjsErrorMessage(errorMessage)
+    let simplifiedErrorMessage = extractEthjsErrorMessage(errorMessage)
     // simplify 'Transaction Failed: known transaction'
-    if (errorMessage.indexOf('Transaction Failed: known transaction') === 0) {
+    if (simplifiedErrorMessage.indexOf('Transaction Failed: known transaction') === 0) {
       // cut the hash from the error message
-      errorMessage = 'Transaction Failed: known transaction'
+      simplifiedErrorMessage = 'Transaction Failed: known transaction'
     }
-    return errorMessage
+    return simplifiedErrorMessage
   })
 }
 

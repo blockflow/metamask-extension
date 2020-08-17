@@ -30,6 +30,7 @@
 @import '../ui/sender-to-recipient/index';
 @import '../ui/tabs/index';
 @import '../ui/token-balance/index';
+@import 'signature-request-original/index';
 @import 'token-cell/token-cell';
 @import 'transaction-activity-log/index';
 @import 'transaction-breakdown/index';
@@ -59,6 +60,7 @@
 @import '../ui/dropdown/dropdown';
 @import 'permissions-connect-header/index';
 @import 'permissions-connect-footer/index';
+@import 'tab-bar/index';
 @import 'wallet-overview/index';
 @import '../ui/account-mismatch-warning/index';
 @import '../ui/icon-border/icon-border';

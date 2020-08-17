@@ -93,15 +93,15 @@ export default class NetworkController extends EventEmitter {
 
   setNetworkState (network, type) {
     if (network === 'loading') {
-      return this.networkStore.putState(network)
+      this.networkStore.putState(network)
+      return
     }
 
     // type must be defined
     if (!type) {
       return
     }
-    network = networks.networkList[type]?.chainId || network
-    return this.networkStore.putState(network)
+    this.networkStore.putState(networks.networkList[type]?.chainId || network)
   }
 
   isNetworkLoading () {
@@ -111,7 +111,8 @@ export default class NetworkController extends EventEmitter {
   lookupNetwork () {
     // Prevent firing when provider is not defined.
     if (!this._provider) {
-      return log.warn('NetworkController - lookupNetwork aborted due to missing provider')
+      log.warn('NetworkController - lookupNetwork aborted due to missing provider')
+      return
     }
     const { type } = this.providerStore.getState()
     const ethQuery = new EthQuery(this._provider)
@@ -120,7 +121,8 @@ export default class NetworkController extends EventEmitter {
       const currentNetwork = this.getNetworkState()
       if (initialNetwork === currentNetwork) {
         if (err) {
-          return this.setNetworkState('loading')
+          this.setNetworkState('loading')
+          return
         }
         log.info('web3.getNetwork returned ' + network)
         this.setNetworkState(network, type)
