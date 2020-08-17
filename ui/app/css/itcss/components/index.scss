@@ -4,7 +4,6 @@
 @import '../../../components/ui/list-item/index';
 @import '../../../components/ui/popover/index';
 @import '../../../components/ui/icon/preloader/index';
-@import './footer';
 @import './network';
 @import './newui-sections';
 @import './send';
@@ -12,11 +11,9 @@
 
 // Tx List and Sections
 @import './menu';
-@import './gas-slider';
 @import './simple-dropdown';
 @import './request-encryption-public-key';
 @import './request-decrypt-message';
-@import './pages/index';
 @import './new-account';
 @import './tooltip';
 @import '../../../components/app/index';
