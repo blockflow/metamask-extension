@@ -44,9 +44,12 @@ export default function setupWeb3 (log) {
       }
 
       if (shouldLogUsage) {
+        const name = typeof key === 'string'
+          ? key
+          : `typeof ${typeof key}`
         window.ethereum.request({
           method: 'metamask_logInjectedWeb3Usage',
-          params: [{ action: 'window.web3 get', name: key }],
+          params: [{ action: 'window.web3 get', name }],
         })
       }
 
@@ -54,11 +57,13 @@ export default function setupWeb3 (log) {
       return _web3[key]
     },
     set: (_web3, key, value) => {
-
+      const name = typeof key === 'string'
+        ? key
+        : `typeof ${typeof key}`
       if (shouldLogUsage) {
         window.ethereum.request({
           method: 'metamask_logInjectedWeb3Usage',
-          params: [{ action: 'window.web3 set', name: key }],
+          params: [{ action: 'window.web3 set', name }],
         })
       }
 
